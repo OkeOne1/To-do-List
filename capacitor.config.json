@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.todolist",
+  "appName": "ToDoList",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://localhost:5173",
+    "cleartext": true
+  }
+}

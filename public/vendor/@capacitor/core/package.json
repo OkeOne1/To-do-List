@@ -1,0 +1,9 @@
+{
+  "name": "@capacitor/core",
+  "version": "0.0.1",
+  "description": "Lightweight Capacitor core stub for offline development",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  }
+}
