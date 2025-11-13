@@ -1,0 +1,9 @@
+{
+  "name": "@capacitor/preferences",
+  "version": "0.0.1",
+  "description": "Preferences plugin stub backed by browser localStorage",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  }
+}
