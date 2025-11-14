@@ -1,0 +1,28 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "Capacitor-based To-Do List web app with local storage",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview-server.mjs",
+    "format": "prettier \"**/*.{js,mjs,json,css,html,md}\" --write",
+    "postinstall": "node scripts/postinstall.mjs"
+  },
+  "keywords": [
+    "todo",
+    "capacitor",
+    "preferences",
+    "mobile"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "file:packages/capacitor-core",
+    "@capacitor/preferences": "file:packages/capacitor-preferences"
+  },
+  "devDependencies": {
+    "prettier": "file:packages/prettier"
+  }
+}

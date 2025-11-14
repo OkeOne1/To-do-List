@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To-Do Atelier</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@capacitor/core": "./vendor/@capacitor/core/index.js",
+          "@capacitor/preferences": "./vendor/@capacitor/preferences/index.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="gradient-canvas"></div>
+    <div class="app-shell">
+      <header class="app-topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">To-Do Atelier</p>
+            <h1>Твой основной список задач</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div class="status-pill">
+            <span id="status-mode">Сконцентрировано</span>
+            <strong id="status-day">Сегодня</strong>
+          </div>
+          <button id="create-btn" class="cta primary">Создать задачу</button>
+        </div>
+      </header>
+
+      <section class="insights">
+        <article>
+          <p>Активных задач</p>
+          <strong id="insight-active">0</strong>
+          <small id="insight-active-label">держи план на коротком поводке</small>
+        </article>
+        <article>
+          <p>Фокус-слоты</p>
+          <strong id="insight-focus">0</strong>
+          <small id="insight-focus-label">бронь для глубоких задач</small>
+        </article>
+        <article>
+          <p>История</p>
+          <strong id="insight-history">0%</strong>
+          <small id="insight-history-label">задач закрыто этой неделей</small>
+        </article>
+      </section>
+
+      <main class="app-grid">
+        <section class="panel focus panel-placeholder" aria-hidden="true">
+          <header>
+            <div>
+              <p class="eyebrow">Черновик</p>
+              <h2 id="form-title">Фокус-редактор</h2>
+              <p class="muted">
+                Фиксируй задачу, добавляй контекст и отправляй в основной список. Форма всплывает отдельным окном,
+                чтобы ничто не мешало.
+              </p>
+            </div>
+          </header>
+          <div id="form-holder" aria-hidden="true">
+            <form id="task-form" novalidate>
+              <input type="hidden" id="task-id" />
+              <label class="field">
+                <span>Название</span>
+                <input
+                  id="task-title"
+                  name="title"
+                  type="text"
+                  placeholder="Например: подготовить отчет"
+                  required
+                />
+              </label>
+              <label class="field">
+                <span>Детали</span>
+                <textarea
+                  id="task-notes"
+                  name="notes"
+                  rows="4"
+                  placeholder="Шаги, контакты или быстрые ориентиры"
+                ></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit" class="btn primary">Сохранить</button>
+                <button type="button" id="reset-btn" class="btn secondary">Сбросить</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel list">
+          <header class="panel-header">
+            <div>
+              <p class="eyebrow">Сегодня</p>
+              <h2>Список задач</h2>
+              <p class="muted">Перетаскивай внимание, завершай и оставляй заметки прямо здесь.</p>
+            </div>
+            <button type="button" id="clear-completed" class="chip ghost">Очистить выполненные</button>
+          </header>
+          <ul id="task-list" class="task-list" aria-live="polite"></ul>
+        </section>
+
+        <section class="panel timeline">
+          <header>
+            <div>
+              <p class="eyebrow">Ритм</p>
+              <h2>Пульс дня</h2>
+              <p class="muted">Помогает распределить, когда брать сложные задачи, а когда хватит обзора.</p>
+            </div>
+          </header>
+          <ol class="timeline-list">
+            <li>
+              <span>08:00</span>
+              <strong>Глубокий слот</strong>
+              <small>Задачи из блока «Срочно» без встреч и чатов.</small>
+            </li>
+            <li>
+              <span>13:00</span>
+              <strong>Командные вопросы</strong>
+              <small>Фоллоу-апы, ответы, быстрые правки.</small>
+            </li>
+            <li>
+              <span>18:30</span>
+              <strong>Подведение итогов</strong>
+              <small>Проверка списка, расстановка приоритетов на завтра.</small>
+            </li>
+          </ol>
+        </section>
+      </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+      <div id="modal-panel" class="modal-panel" role="dialog" aria-modal="true"></div>
+    </div>
+
+    <template id="task-item-template">
+      <li class="task-item">
+        <label class="task-info">
+          <input type="checkbox" class="task-toggle" />
+          <span class="task-text">
+            <strong class="task-title"></strong>
+            <small class="task-notes"></small>
+          </span>
+        </label>
+        <div class="task-actions">
+          <button type="button" class="btn icon edit" aria-label="Редактировать">
+            ред.
+          </button>
+          <button type="button" class="btn icon delete" aria-label="Удалить">
+            ×
+          </button>
+        </div>
+      </li>
+    </template>
+    <div class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
